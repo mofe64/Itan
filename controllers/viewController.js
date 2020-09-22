@@ -3,11 +3,9 @@ const catchAsync = require('../util/CatchAsync');
 const Story = require('../models/storyModel');
 const Feature = require('../util/Features');
 
-const success_msg = '';
-const error_msg = '';
-const error = '';
 exports.getIndex = catchAsync(async (req, res, next) => {
   const featuredStories = await Story.find({ featured: true });
+  //console.log(featuredStories);
   res.status(200).render('index', {
     featuredStories,
   });
@@ -27,7 +25,7 @@ exports.getAllStories = catchAsync(async (req, res, next) => {
     .limitFields()
     .paginate();
   const stories = await features.query;
-  const limit = 3;
+  const limit = 20;
   const pages = Math.ceil(determinestories.length / limit);
   res.status(200).render('allstories', {
     stories,
@@ -55,9 +53,6 @@ exports.getAdminHome = catchAsync(async (req, res, next) => {
   const stories = await Story.find();
   res.status(200).render('admin/adminHome', {
     stories,
-    success_msg,
-    error_msg,
-    error,
   });
 });
 
@@ -108,13 +103,19 @@ exports.editStory = catchAsync(async (req, res, next) => {
       runValidators: true,
     }
   );
+  req.flash('success_msg', 'Story successfully updated');
   res.status(200).redirect('/admin/dashboard');
 });
 exports.deleteStory = catchAsync(async (req, res, next) => {
   const story = await Story.findByIdAndDelete(req.params.id);
+  req.flash('success_msg', 'Story deleted');
   res.status(200).redirect('/admin/dashboard');
 });
 
 exports.getCloudinaryUploadPage = catchAsync(async (req, res, next) => {
   res.status(200).render('admin/cloudinaryUploadPage');
+});
+
+exports.getLoginPage = catchAsync(async (req, res, next) => {
+  res.status(200).render('login');
 });
