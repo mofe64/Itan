@@ -6,7 +6,7 @@ const AppError = require('./util/AppError');
 const GlobalErrorHandler = require('./controllers/errorController');
 
 //routers
-//const viewRouter = require("./routers/viewRouter");
+const viewRouter = require('./routers/viewRouter');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -19,7 +19,7 @@ app.use(express.json({ limit: '10kb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 
 //routes
-//app.use('/', viewRouter);
+app.use('/', viewRouter);
 
 //ERROR HANDLER GLOBAL
 app.use(GlobalErrorHandler);

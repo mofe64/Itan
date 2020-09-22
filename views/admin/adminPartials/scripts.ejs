@@ -1,0 +1,25 @@
+    <script src="/admin/vendors/base/vendor.bundle.base.js"></script>
+    <script src="/adminPublic/js/template.js"></script>
+    <script src="/admin/vendors/chart.js/Chart.min.js"></script>
+    <script src="/admin/vendors/progressbar.js/progressbar.min.js"></script>
+		<script src="/admin/vendors/chartjs-plugin-datalabels/chartjs-plugin-datalabels.js"></script>
+		<script src="/admin/vendors/justgage/raphael-2.1.4.min.js"></script>
+		<script src="/admin/vendors/justgage/justgage.js"></script>
+    <script src="/admin/js/dashboard.js"></script>
+
+<script src="/tablesPublic/assets/js/vendors/jquery.min.js"></script>
+<script src="/tablesPublic/assets/js/vendors/bootstrap.bundle.min.js"></script>
+<!-- Data Tables plugin -->
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script src="/tablesPublic/assets/js/app.js"></script>
+<script>
+    // datatables plugin gotten from https://datatables.net/examples/styling/bootstrap4
+
+    $(document).ready(function() {
+        // Datatable plugin call
+        $('#uploads').DataTable();
+        $('#requests').DataTable();
+        $('#tickets').DataTable();
+    } );
+</script>
