@@ -4,7 +4,9 @@ const Story = require('../models/storyModel');
 const Feature = require('../util/Features');
 
 exports.getIndex = catchAsync(async (req, res, next) => {
-  const featuredStories = await Story.find({ featured: true });
+  const featuredStories = await Story.find({ featured: true })
+    .sort('-createdAt')
+    .limit(10);
   //console.log(featuredStories);
   res.status(200).render('index', {
     featuredStories,
@@ -50,7 +52,7 @@ exports.getAbout = catchAsync(async (req, res, next) => {
 });
 
 exports.getAdminHome = catchAsync(async (req, res, next) => {
-  const stories = await Story.find();
+  const stories = await Story.find().sort('-createdAt');
   res.status(200).render('admin/adminHome', {
     stories,
   });
